@@ -23,8 +23,8 @@ class TournamentFragment : Fragment() {
             ViewModelProviders.of(this).get(TournamentViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_tournaments, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        tournamentViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        tournamentViewModel.getTournaments().observe(viewLifecycleOwner, Observer {
+            textView.text = it[0].name
         })
         return root
     }
