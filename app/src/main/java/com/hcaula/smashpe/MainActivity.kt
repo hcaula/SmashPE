@@ -1,4 +1,4 @@
-package com.example.smashpe
+package com.hcaula.smashpe
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
