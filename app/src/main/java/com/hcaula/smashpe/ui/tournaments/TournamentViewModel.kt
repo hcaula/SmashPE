@@ -1,13 +1,13 @@
-package com.hcaula.smashpe.ui.notifications
+package com.hcaula.smashpe.ui.tournaments
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class TournamentViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is tournaments Fragment"
     }
     val text: LiveData<String> = _text
 }

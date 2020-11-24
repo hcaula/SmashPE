@@ -1,13 +1,13 @@
-package com.hcaula.smashpe.ui.dashboard
+package com.hcaula.smashpe.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class SettingsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is settings Fragment"
     }
     val text: LiveData<String> = _text
 }

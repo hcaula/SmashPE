@@ -1,4 +1,4 @@
-package com.hcaula.smashpe.ui.home
+package com.hcaula.smashpe.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.hcaula.smashpe.R
 
-class HomeFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        settingsViewModel =
+            ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        settingsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

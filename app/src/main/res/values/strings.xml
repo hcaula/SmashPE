@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SmashPE</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="tournaments">Tournaments</string>
+    <string name="settings">Settings</string>
 </resources>
