@@ -1,14 +1,16 @@
 package com.hcaula.smashpe.ui.tournaments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hcaula.smashpe.MatchesActivity
 import com.hcaula.smashpe.R
 
 class TournamentsFragment : Fragment() {
@@ -24,27 +26,33 @@ class TournamentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel =
-            ViewModelProviders.of(this).get(TournamentsViewModel::class.java)
+            ViewModelProvider(this).get(TournamentsViewModel::class.java)
         val root = inflater.inflate(R.layout.tournaments_fragment, container, false)
-
 
         viewModel.getTournaments().observe(viewLifecycleOwner, Observer {
             viewManager = LinearLayoutManager(activity)
-            viewAdapter = TournamentsViewAdapter(it)
+            viewAdapter = TournamentsViewAdapter(it, onItemClickListener)
 
-            recyclerView = view!!.findViewById<RecyclerView>(R.id.tournaments_recycler_view).apply {
-                // use this setting to improve performance if you know that changes
-                // in content do not change the layout size of the RecyclerView
-                setHasFixedSize(true)
-
-                // use a linear layout manager
-                layoutManager = viewManager
-
-                // specify an viewAdapter (see also next example)
-                adapter = viewAdapter
-            }
+            recyclerView =
+                requireView().findViewById<RecyclerView>(R.id.tournaments_recycler_view).apply {
+                    setHasFixedSize(true)
+                    layoutManager = viewManager
+                    adapter = viewAdapter
+                }
         })
 
         return root
+    }
+
+    private val onItemClickListener = View.OnClickListener {
+        val tournaments = viewModel.getTournaments()
+        val position = recyclerView.getChildAdapterPosition(it)
+
+        val selectedTournament = tournaments.value?.get(position)
+        val intent = Intent(activity, MatchesActivity::class.java).apply {
+            putExtra("tournamentId", selectedTournament?.id.toString())
+        }
+
+        startActivity(intent)
     }
 }

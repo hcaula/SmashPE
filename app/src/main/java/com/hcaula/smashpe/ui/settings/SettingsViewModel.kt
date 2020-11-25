@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class SettingsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Settings screen in progress..."
+        value = "Settings screen in development..."
     }
     val text: LiveData<String> = _text
 }

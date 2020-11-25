@@ -40,7 +40,7 @@ class TournamentsViewModel : ViewModel() {
                 t: Throwable
             ) {
                 Log.e("Error tournament fetch", t.message.toString())
-                TODO("Not yet implemented")
+                TODO("Implement request failure handler")
             }
         })
     }

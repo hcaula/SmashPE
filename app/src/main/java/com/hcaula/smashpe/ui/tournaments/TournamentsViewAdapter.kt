@@ -9,12 +9,14 @@ import com.hcaula.smashpe.challonge.entities.Tournament
 import kotlinx.android.synthetic.main.tournaments_item.view.*
 
 class TournamentsViewAdapter(
-    private val tournaments: List<Tournament>
+    private val tournaments: List<Tournament>,
+    private val onItemClickListener: View.OnClickListener
 ) : RecyclerView.Adapter<TournamentsViewAdapter.ViewHolder>() {
 
     class ViewHolder(private var view: View) : RecyclerView.ViewHolder(view) {
-        fun bindView(tournament: Tournament) {
+        fun bindView(tournament: Tournament, clickListener: View.OnClickListener) {
             view.tournament_name.text = tournament.name
+            view.setOnClickListener(clickListener)
         }
     }
 
@@ -35,7 +37,7 @@ class TournamentsViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(tournaments[position])
+        holder.bindView(tournaments[position], onItemClickListener)
     }
 
     override fun getItemCount() = tournaments.size
