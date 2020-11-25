@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/tournaments"
-        android:name="com.hcaula.smashpe.ui.tournaments.TournamentFragment"
+        android:name="com.hcaula.smashpe.ui.tournaments.TournamentsFragment"
         android:label="@string/tournaments"
-        tools:layout="@layout/fragment_tournaments" />
+        tools:layout="@layout/tournaments_fragment" />
 
     <fragment
         android:id="@+id/settings"
         android:name="com.hcaula.smashpe.ui.settings.DashboardFragment"
         android:label="@string/settings"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/settings_fragment" />
 
 </navigation>

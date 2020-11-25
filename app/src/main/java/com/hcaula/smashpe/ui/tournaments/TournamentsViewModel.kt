@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TournamentViewModel : ViewModel() {
+class TournamentsViewModel : ViewModel() {
 
     private val tournaments: MutableLiveData<List<Tournament>> by lazy {
         MutableLiveData<List<Tournament>>().also {
