@@ -3,9 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 // Setting API keys in BuildConfig
-def apikeyPropertiesFile = rootProject.file("apikeys.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+def apiKeyPropertiesFile = rootProject.file("apikeys.properties")
+def apiKeyProperties = new Properties()
+apiKeyProperties.load(new FileInputStream(apiKeyPropertiesFile))
 
 android {
     compileSdkVersion 30
@@ -20,7 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "CHALLONGE_SECRET", apikeyProperties['CHALLONGE_SECRET'])
+        buildConfigField("String", "CHALLONGE_SECRET", apiKeyProperties['CHALLONGE_SECRET'])
     }
 
     buildTypes {
