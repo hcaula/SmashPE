@@ -1,7 +1,6 @@
 package com.hcaula.smashpe.ui.matches
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,8 +48,6 @@ class MatchesFragment : Fragment() {
             val currentTab = requireArguments().getInt(ARG_SECTION_NUMBER)
             val filteredMatches = filterMatches(it, currentTab)
 
-            Log.i("size", it.size.toString())
-
             viewManager = LinearLayoutManager(activity)
             viewAdapter = MatchesViewAdapter(
                 filteredMatches,
@@ -77,11 +74,11 @@ class MatchesFragment : Fragment() {
         val selectedMatch = matches.value?.get(position)
     }
 
-    private fun filterMatches(matches: List<Match>, tab: Int): List<Match> {
+    private fun filterMatches(matches: List<Match?>, tab: Int): List<Match?> {
         return matches.filter {
             if (tab == SectionsPagerAdapter.PAST_MATCHES_TAB) {
-                it.state == MatchState.complete
-            } else it.state != MatchState.complete
+                it?.state == MatchState.complete
+            } else it?.state != MatchState.complete
         }
     }
 

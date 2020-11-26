@@ -7,5 +7,9 @@ data class Match(
     val state: MatchState,
     val winnerId: BigInteger,
     val suggestedPlayOrder: Int,
-    val round: Int
+    val round: Int,
+    val player1Id: BigInteger?,
+    val player2Id: BigInteger?,
+    var player1Name: String,
+    var player2Name: String
 )
