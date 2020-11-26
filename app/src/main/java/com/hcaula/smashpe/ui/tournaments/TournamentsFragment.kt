@@ -36,6 +36,7 @@ class TournamentsFragment : Fragment() {
             recyclerView =
                 requireView().findViewById<RecyclerView>(R.id.tournaments_recycler_view).apply {
                     setHasFixedSize(true)
+                    isNestedScrollingEnabled = false
                     layoutManager = viewManager
                     adapter = viewAdapter
                 }
@@ -51,6 +52,7 @@ class TournamentsFragment : Fragment() {
         val selectedTournament = tournaments.value?.get(position)
         val intent = Intent(activity, MatchesActivity::class.java).apply {
             putExtra("tournamentId", selectedTournament?.id.toString())
+            putExtra("participantsCount", selectedTournament?.participantsCount)
         }
 
         startActivity(intent)

@@ -7,14 +7,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.hcaula.smashpe.R
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
+    R.string.matches_tab_1,
+    R.string.matches_tab_2
 )
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -27,6 +23,11 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     }
 
     override fun getCount(): Int {
-        return 2
+        return TAB_TITLES.size
+    }
+
+    companion object {
+        val CURRENT_MATCHES_TAB = 1
+        val PAST_MATCHES_TAB = 2
     }
 }
