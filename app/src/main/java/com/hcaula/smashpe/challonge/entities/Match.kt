@@ -1,5 +1,6 @@
 package com.hcaula.smashpe.challonge.entities
 
+import java.io.Serializable
 import java.math.BigInteger
 
 data class Match(
@@ -12,4 +13,4 @@ data class Match(
     val player2Id: BigInteger?,
     var player1Name: String,
     var player2Name: String
-)
+) : Serializable

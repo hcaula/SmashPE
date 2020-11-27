@@ -2,6 +2,7 @@ package com.hcaula.smashpe.challonge
 
 import com.hcaula.smashpe.BuildConfig
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 class HttpClient() {
     var client: OkHttpClient
@@ -21,6 +22,15 @@ class HttpClient() {
             val request = original.newBuilder().url(url).build()
             chain.proceed(request)
         }
+
+        httpClient
+            .addInterceptor(
+                HttpLoggingInterceptor()
+                    .setLevel(
+                        HttpLoggingInterceptor.Level.BODY
+                    )
+            )
+
         client = httpClient.build()
     }
 }

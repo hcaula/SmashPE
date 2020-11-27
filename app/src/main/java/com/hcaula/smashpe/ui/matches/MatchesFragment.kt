@@ -1,5 +1,6 @@
 package com.hcaula.smashpe.ui.matches
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hcaula.smashpe.R
+import com.hcaula.smashpe.ReportActivity
 import com.hcaula.smashpe.challonge.entities.Match
 import com.hcaula.smashpe.challonge.entities.MatchState
 import com.hcaula.smashpe.ui.tournaments.MatchesViewAdapter
@@ -21,16 +23,18 @@ class MatchesFragment : Fragment() {
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: MatchesViewAdapter
+    private lateinit var tId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)
             .get(MatchesViewModel::class.java).apply {
                 setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-                tournamentId = activity
+                tId = activity
                     ?.intent
                     ?.getStringExtra("tournamentId")
                     .toString()
+                tournamentId = tId
             }
     }
 
@@ -68,10 +72,15 @@ class MatchesFragment : Fragment() {
     }
 
     private val onItemClickListener = View.OnClickListener {
-        val matches = viewModel.getMatches()
-        val position = recyclerView.getChildAdapterPosition(it)
+        val matches = viewModel.getMatches().value
 
-        val selectedMatch = matches.value?.get(position)
+        val selectedMatch = matches?.find { match -> match?.id == it.tag }
+        val intent = Intent(activity, ReportActivity::class.java).apply {
+            putExtra("tournamentId", tId)
+            putExtra("match", selectedMatch)
+        }
+
+        startActivity(intent)
     }
 
     private fun filterMatches(matches: List<Match?>, tab: Int): List<Match?> {
@@ -84,7 +93,6 @@ class MatchesFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-
 
         @JvmStatic
         fun newInstance(sectionNumber: Int): MatchesFragment {

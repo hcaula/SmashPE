@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hcaula.smashpe.ReportActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/player1Layout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/player1Name"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/player1Score"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:autofillHints="0"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/score_hint"
+                android:inputType="number"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/player1Layout">
+
+            <TextView
+                android:id="@+id/player2Name"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/player2Score"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:autofillHints="0"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/score_hint"
+                android:inputType="number"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_results_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/fab_margin"
+            android:text="@string/submit_results_button"
+            android:textSize="20sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

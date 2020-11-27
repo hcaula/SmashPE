@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hcaula.smashpe.R
 import com.hcaula.smashpe.challonge.entities.Match
+import com.hcaula.smashpe.challonge.entities.MatchState
 import kotlinx.android.synthetic.main.matches_item.view.*
 
 class MatchesViewAdapter(
@@ -16,7 +17,11 @@ class MatchesViewAdapter(
     class ViewHolder(private var view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(match: Match, clickListener: View.OnClickListener) {
             view.participants_name.text = "${match.player1Name} x ${match.player2Name}"
-            view.setOnClickListener(clickListener)
+            view.tag = match.id
+
+            if (match.state != MatchState.complete) {
+                view.setOnClickListener(clickListener)
+            }
         }
     }
 

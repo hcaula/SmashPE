@@ -5,4 +5,6 @@
     <string name="title_activity_matches">Matches</string>
     <string name="matches_tab_1">Pending results</string>
     <string name="matches_tab_2">Past matches</string>
+    <string name="score_hint">0</string>
+    <string name="submit_results_button">Submit results</string>
 </resources>

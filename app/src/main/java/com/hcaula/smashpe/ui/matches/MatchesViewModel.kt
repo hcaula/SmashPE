@@ -45,9 +45,7 @@ class MatchesViewModel : ViewModel() {
                         participantsResponse: Response<List<ParticipantsResponse>?>
                     ) {
                         matchesResponse?.body()?.let { matchesResponse ->
-                            Log.i("res", matchesResponse.toString())
                             participantsResponse.body()?.let { participantsResponse ->
-                                Log.i("res", participantsResponse.toString())
                                 matches.value = matchesResponse.map {
                                     val match = it.match
 
