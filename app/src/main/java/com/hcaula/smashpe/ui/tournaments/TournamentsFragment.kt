@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hcaula.smashpe.MatchesActivity
 import com.hcaula.smashpe.R
+import kotlinx.android.synthetic.main.tournaments_fragment.*
 
 class TournamentsFragment : Fragment() {
 
@@ -33,6 +34,8 @@ class TournamentsFragment : Fragment() {
         val root = inflater.inflate(R.layout.tournaments_fragment, container, false)
 
         viewModel.getTournaments().observe(viewLifecycleOwner, Observer {
+            progressBar.visibility = View.GONE
+
             viewManager = LinearLayoutManager(activity)
             viewAdapter = TournamentsViewAdapter(it, onItemClickListener)
 
