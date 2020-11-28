@@ -21,6 +21,7 @@
             android:layout_height="50dp">
 
             <TextView
+                android:background="@color/colorResults"
                 android:id="@+id/player1Name"
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
@@ -44,11 +45,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             app:layout_constraintTop_toBottomOf="@id/player1Layout">
 
             <TextView
+                android:background="@color/colorResults"
                 android:id="@+id/player2Name"
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
