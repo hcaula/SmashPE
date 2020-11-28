@@ -3,6 +3,7 @@ package com.hcaula.smashpe
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.hcaula.smashpe.challonge.RetrofitFacade
 import com.hcaula.smashpe.challonge.entities.Match
@@ -66,7 +67,6 @@ class ReportActivity : AppCompatActivity() {
 
                 response.body()?.let {
                     Log.i("Reported successfully", it.match.id.toString())
-                    Log.i("errors", it.errors.toString())
                 }
             }
 
@@ -74,8 +74,7 @@ class ReportActivity : AppCompatActivity() {
                 call: Call<ReportResponse?>,
                 t: Throwable
             ) {
-                Log.e("Error reporting match", t.message.toString())
-                TODO("Implement request failure handler")
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
         })
     }

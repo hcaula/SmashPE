@@ -26,7 +26,10 @@ class TournamentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel =
-            ViewModelProvider(this).get(TournamentsViewModel::class.java)
+            ViewModelProvider(this).get(TournamentsViewModel::class.java).apply {
+                val ctx = getContext()
+                if (ctx != null) context = ctx
+            }
         val root = inflater.inflate(R.layout.tournaments_fragment, container, false)
 
         viewModel.getTournaments().observe(viewLifecycleOwner, Observer {

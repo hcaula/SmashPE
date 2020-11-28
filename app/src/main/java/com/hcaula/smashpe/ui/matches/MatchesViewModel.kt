@@ -1,6 +1,7 @@
 package com.hcaula.smashpe.ui.matches
 
-import android.util.Log
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,7 @@ import retrofit2.Response
 
 class MatchesViewModel : ViewModel() {
 
+    lateinit var context: Context
     lateinit var tournamentId: String
 
     private val matches: MutableLiveData<List<Match?>> by lazy {
@@ -75,8 +77,7 @@ class MatchesViewModel : ViewModel() {
                     }
 
                     override fun onFailure(call: Call<List<ParticipantsResponse>?>, t: Throwable) {
-                        Log.e("Error prtcpnts fetch", t.message.toString())
-                        TODO("Implement request failure handler")
+                        Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                     }
 
                 })
@@ -86,8 +87,7 @@ class MatchesViewModel : ViewModel() {
                 call: Call<List<MatchesResponse>?>,
                 t: Throwable
             ) {
-                Log.e("Error matches fetch", t.message.toString())
-                TODO("Implement request failure handler")
+                Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
             }
         })
     }

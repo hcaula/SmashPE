@@ -30,11 +30,15 @@ class MatchesFragment : Fragment() {
         viewModel = ViewModelProvider(this)
             .get(MatchesViewModel::class.java).apply {
                 setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+
                 tId = activity
                     ?.intent
                     ?.getStringExtra("tournamentId")
                     .toString()
                 tournamentId = tId
+
+                val ctx = getContext()
+                if (ctx != null) context = ctx
             }
     }
 

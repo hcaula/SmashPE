@@ -1,6 +1,7 @@
 package com.hcaula.smashpe.ui.tournaments
 
-import android.util.Log
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TournamentsViewModel : ViewModel() {
+
+    lateinit var context: Context
 
     private val tournaments: MutableLiveData<List<Tournament>> by lazy {
         MutableLiveData<List<Tournament>>().also {
@@ -39,8 +42,7 @@ class TournamentsViewModel : ViewModel() {
                 call: Call<List<TournamentResponse>?>,
                 t: Throwable
             ) {
-                Log.e("Error tournament fetch", t.message.toString())
-                TODO("Implement request failure handler")
+                Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
             }
         })
     }
