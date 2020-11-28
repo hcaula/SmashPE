@@ -1,10 +1,14 @@
 package com.hcaula.smashpe
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.hcaula.smashpe.challonge.RetrofitFacade
 import com.hcaula.smashpe.challonge.entities.Match
 import com.hcaula.smashpe.challonge.entities.ReportResponse
@@ -33,20 +37,47 @@ class ReportActivity : AppCompatActivity() {
             .intent
             .getStringExtra("tournamentId").toString()
 
-
         player1Name.text = match.player1Name
         player2Name.text = match.player2Name
+
+        player1Score.addTextChangedListener(OnTextEdit(player2Score))
+        player2Score.addTextChangedListener(OnTextEdit(player1Score))
 
         submit_results_button.setOnClickListener(onClickListener)
     }
 
+    inner class OnTextEdit(private val compareScore: EditText) : TextWatcher {
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            val thisScore = p0.toString()
+            val otherScore = compareScore.text?.toString()
+
+            if (thisScore.isBlank() || otherScore.isNullOrBlank() || thisScore == otherScore) {
+                submit_results_button.isEnabled = false
+                submit_results_button.setBackgroundColor(
+                    ContextCompat.getColor(applicationContext, R.color.colorDisabled)
+                )
+            } else {
+                submit_results_button.isEnabled = true
+                submit_results_button.setBackgroundColor(
+                    ContextCompat.getColor(
+                        applicationContext,
+                        R.color.colorPrimary
+                    )
+                )
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    }
+
     private val onClickListener = View.OnClickListener {
-        val player1Score = player1Score.text.toString()
-        val player2Score = player2Score.text.toString()
-        val scoreCsv = "${player1Score}-${player2Score}"
+        val player1ScoreValue = player1Score.text.toString()
+        val player2ScoreValue = player2Score.text.toString()
+        val scoreCsv = "${player1ScoreValue}-${player2ScoreValue}"
 
         var winnerId = match.player1Id as BigInteger
-        if (player2Score.toInt() > player1Score.toInt()) {
+        if (player2ScoreValue.toInt() > player1ScoreValue.toInt()) {
             winnerId = match.player2Id as BigInteger
         }
 

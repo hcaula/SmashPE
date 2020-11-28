@@ -21,10 +21,10 @@
             android:layout_height="50dp">
 
             <TextView
-                android:background="@color/colorResults"
                 android:id="@+id/player1Name"
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
+                android:background="@color/colorResults"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
@@ -45,16 +45,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="1dp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginTop="1dp"
             app:layout_constraintTop_toBottomOf="@id/player1Layout">
 
             <TextView
-                android:background="@color/colorResults"
                 android:id="@+id/player2Name"
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
+                android:background="@color/colorResults"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
@@ -80,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorDisabled"
+            android:enabled="false"
             android:padding="@dimen/fab_margin"
             android:text="@string/submit_results_button"
             android:textSize="20sp" />
