@@ -26,6 +26,12 @@
     </plurals>
     <string name="tournament_date">• %s</string>
 
+    <!-- Settings -->
+    <string name="settings_reset">Reset Challonge API Key</string>
+    <string name="reset_api_key_dialog">Are you sure you want to reset your API Key?</string>
+    <string name="challonge_icon_description">Challonge icon</string>
+    <string name="arrow_icon_description">Arrow icon</string>
+
     <!-- Matches -->
     <string name="title_activity_matches">Matches</string>
     <string name="matches_tab_1">Pending results</string>
