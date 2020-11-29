@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -97,7 +96,8 @@ class ReportActivity : AppCompatActivity() {
             ) { _, _ ->
                 reportMatch(
                     scoreCsv,
-                    winnerId.toString()
+                    winnerId.toString(),
+                    this
                 )
             }
             .setNegativeButton(
@@ -107,7 +107,9 @@ class ReportActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    private fun reportMatch(scoreCsv: String, winnerId: String) {
+    private fun reportMatch(scoreCsv: String, winnerId: String, activity: ReportActivity) {
+        loading.visibility = View.VISIBLE
+
         val call = RetrofitFacade
             .retrofit
             .reportMatchResults(
@@ -124,7 +126,8 @@ class ReportActivity : AppCompatActivity() {
             ) {
 
                 response.body()?.let {
-                    Log.i("Reported successfully", it.match.id.toString())
+                    loading.visibility = View.INVISIBLE
+                    activity.finish()
                 }
             }
 

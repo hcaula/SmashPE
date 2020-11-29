@@ -11,11 +11,17 @@ private val TAB_TITLES = arrayOf(
     R.string.matches_tab_2
 )
 
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(
+    private val context: Context,
+    fm: FragmentManager,
+    private val matchesViewModel: MatchesViewModel
+) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        return MatchesFragment.newInstance(position + 1)
+        return MatchesFragment.newInstance(
+            position + 1,
+            matchesViewModel
+        )
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

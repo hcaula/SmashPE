@@ -1,7 +1,6 @@
 package com.hcaula.smashpe.ui.matches
 
-import android.content.Context
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +14,6 @@ import retrofit2.Response
 
 class MatchesViewModel : ViewModel() {
 
-    lateinit var context: Context
     lateinit var tournamentId: String
 
     private val matches: MutableLiveData<List<Match?>> by lazy {
@@ -77,7 +75,7 @@ class MatchesViewModel : ViewModel() {
                     }
 
                     override fun onFailure(call: Call<List<ParticipantsResponse>?>, t: Throwable) {
-                        Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                        Log.e("Error", t.message.toString())
                     }
 
                 })
@@ -87,14 +85,8 @@ class MatchesViewModel : ViewModel() {
                 call: Call<List<MatchesResponse>?>,
                 t: Throwable
             ) {
-                Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                Log.e("Error", t.message.toString())
             }
         })
-    }
-
-    private val _index = MutableLiveData<Int>()
-
-    fun setIndex(index: Int) {
-        _index.value = index
     }
 }

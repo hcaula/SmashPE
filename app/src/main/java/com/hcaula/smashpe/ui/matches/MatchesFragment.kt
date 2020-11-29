@@ -17,10 +17,9 @@ import com.hcaula.smashpe.challonge.entities.MatchState
 import com.hcaula.smashpe.ui.tournaments.MatchesViewAdapter
 import kotlinx.android.synthetic.main.tournaments_fragment.*
 
+class MatchesFragment(val matchesViewModel: MatchesViewModel) : Fragment() {
 
-class MatchesFragment : Fragment() {
-
-    private lateinit var viewModel: MatchesViewModel
+    private lateinit var sectionsViewModel: SectionsViewModel
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: MatchesViewAdapter
@@ -29,24 +28,12 @@ class MatchesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)
-            .get(MatchesViewModel::class.java).apply {
+        sectionsViewModel = ViewModelProvider(this)
+            .get(SectionsViewModel::class.java).apply {
                 setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
-
-                tId = activity
-                    ?.intent
-                    ?.getStringExtra("tournamentId")
-                    .toString()
-                tournamentId = tId
-
-                participantsCount = activity
-                    ?.intent
-                    ?.getIntExtra("participantsCount", 0)!!
-
-                val ctx = getContext()
-                if (ctx != null) context = ctx
             }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +45,7 @@ class MatchesFragment : Fragment() {
             false
         )
 
-        viewModel.getMatches().observe(viewLifecycleOwner, Observer {
+        matchesViewModel.getMatches().observe(viewLifecycleOwner, Observer {
             progressBar.visibility = View.GONE
 
             val currentTab = requireArguments().getInt(ARG_SECTION_NUMBER)
@@ -85,7 +72,7 @@ class MatchesFragment : Fragment() {
     }
 
     private val onItemClickListener = View.OnClickListener {
-        val matches = viewModel.getMatches().value
+        val matches = matchesViewModel.getMatches().value
 
         val selectedMatch = matches?.find { match -> match?.id == it.tag }
         val intent = Intent(activity, ReportActivity::class.java).apply {
@@ -108,8 +95,11 @@ class MatchesFragment : Fragment() {
         private const val ARG_SECTION_NUMBER = "section_number"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int): MatchesFragment {
-            return MatchesFragment().apply {
+        fun newInstance(
+            sectionNumber: Int,
+            matchesViewModel: MatchesViewModel
+        ): MatchesFragment {
+            return MatchesFragment(matchesViewModel).apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
