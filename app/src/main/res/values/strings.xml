@@ -1,10 +1,34 @@
 <resources>
-    <string name="app_name">SmashPE</string>
+    <string name="app_name">Smash PE</string>
+
+    <!-- Main activity -->
     <string name="tournaments">Tournaments</string>
     <string name="settings">Settings</string>
+
+    <!-- Tournaments -->
+    <string name="status_icon_description">Status icon</string>
+    <string name="tournament_name_placeholder">Tournament name</string>
+    <string name="tournament_count_placeholder">23 participants</string>
+    <plurals name="tournament_participants_count">
+        <item quantity="one">%d participant</item>
+        <item quantity="other">%d participants</item>
+    </plurals>
+    <string name="tournament_date">• %s</string>
+
+    <!-- Matches activity -->
     <string name="title_activity_matches">Matches</string>
     <string name="matches_tab_1">Pending results</string>
     <string name="matches_tab_2">Past matches</string>
+
+    <!-- Report activity -->
     <string name="score_hint">0</string>
     <string name="submit_results_button">Submit results</string>
+
+    <!-- States -->
+    <string name="state_unknown">State unknown</string>
+    <string name="state_group_stages_underway">Group stage</string>
+    <string name="state_pending">Awaiting start</string>
+    <string name="state_underway">In progress</string>
+    <string name="state_complete">Finished</string>
+
 </resources>

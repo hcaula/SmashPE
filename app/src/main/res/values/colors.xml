@@ -7,4 +7,11 @@
     <color name="colorBorder">#181a1f</color>
     <color name="colorResults">#333947</color>
     <color name="colorDisabled">#CCCCCC</color>
+
+    <!-- States -->
+    <color name="state_pending">#fff240</color>
+    <color name="state_underway">#91ff00</color>
+    <color name="state_group_stages_underway">#91ff00</color>
+    <color name="state_complete">#828282</color>
+    <color name="state_unknown">#d40000</color>
 </resources>

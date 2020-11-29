@@ -1,5 +1,5 @@
 package com.hcaula.smashpe.challonge.entities
 
 enum class TournamentState {
-    pending, underway, finished
+    pending, underway, complete, group_stages_underway
 }

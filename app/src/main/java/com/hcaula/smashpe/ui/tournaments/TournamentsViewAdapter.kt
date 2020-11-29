@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hcaula.smashpe.R
 import com.hcaula.smashpe.challonge.entities.Tournament
+import com.hcaula.smashpe.util.State
 import kotlinx.android.synthetic.main.tournaments_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TournamentsViewAdapter(
     private val tournaments: List<Tournament>,
@@ -15,7 +18,29 @@ class TournamentsViewAdapter(
 
     class ViewHolder(private var view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(tournament: Tournament, clickListener: View.OnClickListener) {
-            view.tournament_name.text = tournament.name
+            view.name.text = tournament.name
+
+            view.participants_count.text = view.resources.getQuantityString(
+                R.plurals.tournament_participants_count,
+                tournament.participantsCount,
+                tournament.participantsCount
+            )
+
+            view.date.text = view.context.getString(
+                R.string.tournament_date,
+                SimpleDateFormat(
+                    Tournament.DATE_FORMAT,
+                    Locale.US
+                ).format(tournament.createdAt)
+            )
+
+            // Tournament state text and icon color
+            view.state_text.text = State.getStateText(tournament.state.toString(), view)
+            view.state_icon.setColorFilter(
+                State.getStateColor(tournament.state.toString(), view),
+                android.graphics.PorterDuff.Mode.SRC_IN
+            )
+
             view.setOnClickListener(clickListener)
         }
     }
