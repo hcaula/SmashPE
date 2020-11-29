@@ -34,7 +34,7 @@ class TournamentsViewModel : ViewModel() {
                 response: Response<List<TournamentResponse>?>?
             ) {
                 response?.body()?.let {
-                    tournaments.value = it.map { it.tournament }
+                    tournaments.value = it.map { it.tournament }.sortedByDescending { it.createdAt }
                 }
             }
 
