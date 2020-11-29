@@ -1,7 +1,18 @@
 <resources>
-    <string name="app_name">Smash PE</string>
+    <string name="app_name">SmashPE</string>
 
     <!-- Main activity -->
+    <string name="welcome">Welcome to the SmashPE app!</string>
+    <string name="instructions">Enter your Challonge API Key to start</string>
+    <string name="logo_description">Smash PE logo</string>
+    <string name="external_url_description">External URL logo</string>
+    <string name="challonge_api_key">Challonge API Key</string>
+    <string name="validate_button">Validate key</string>
+    <string name="help">Find your API Key</string>
+    <string name="api_key_error">This API Key could not be validated. Please, try again.</string>
+    <string name="api_key_success">API Key validated successfully!</string>
+
+    <!-- Menu activity -->
     <string name="tournaments">Tournaments</string>
     <string name="settings">Settings</string>
 

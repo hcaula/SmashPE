@@ -103,7 +103,7 @@ class ReportActivity : AppCompatActivity() {
         disableButton()
 
         val call = RetrofitFacade
-            .retrofit
+            .retrofit(applicationContext)
             .reportMatchResults(
                 tournamentId,
                 match.id.toString(),

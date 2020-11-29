@@ -1,12 +1,14 @@
 package com.hcaula.smashpe.challonge
 
-import com.hcaula.smashpe.BuildConfig
+import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-class HttpClient() {
+class HttpClient(context: Context) {
     var client: OkHttpClient
-    private val apiKey = BuildConfig.CHALLONGE_SECRET
+    private val apiKey = context
+        .getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        .getString("API_KEY", "")
 
     init {
         val httpClient = OkHttpClient.Builder()

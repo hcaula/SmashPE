@@ -1,5 +1,6 @@
 package com.hcaula.smashpe.ui.matches
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,6 +16,7 @@ import retrofit2.Response
 class MatchesViewModel : ViewModel() {
 
     lateinit var tournamentId: String
+    lateinit var context: Context
     var isLoading = false
 
     private val matches: MutableLiveData<List<Match?>> by lazy {
@@ -35,10 +37,10 @@ class MatchesViewModel : ViewModel() {
 
     private fun fetchMatches(tournamentId: String) {
         val matchesCall = RetrofitFacade
-            .retrofit
+            .retrofit(context)
             .getTournamentMatches(tournamentId)
         val participantsCall = RetrofitFacade
-            .retrofit
+            .retrofit(context)
             .getTournamentParticipants(tournamentId)
 
         matchesCall.enqueue(object : Callback<List<MatchesResponse>?> {

@@ -32,6 +32,7 @@ class MatchesActivity : AppCompatActivity() {
         fetchMatchesViewModel = ViewModelProvider(this)
             .get(MatchesViewModel::class.java).apply {
                 this.tournamentId = tournamentId
+                this.context = applicationContext
             }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(

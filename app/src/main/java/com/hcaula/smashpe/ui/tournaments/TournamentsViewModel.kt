@@ -27,7 +27,7 @@ class TournamentsViewModel : ViewModel() {
     }
 
     private fun fetchTournaments() {
-        val call = RetrofitFacade.retrofit.getTournaments()
+        val call = RetrofitFacade.retrofit(context).getTournaments()
         call.enqueue(object : Callback<List<TournamentResponse>?> {
             override fun onResponse(
                 call: Call<List<TournamentResponse>?>?,
