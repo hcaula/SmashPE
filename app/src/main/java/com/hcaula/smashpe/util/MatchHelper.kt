@@ -8,13 +8,13 @@ import kotlin.math.log2
 
 class MatchHelper {
     companion object {
-        const val GRAND_FINALS = "grand_finals"
-        const val WINNERS_FINALS = "winners_finals"
-        const val WINNERS_SEMIFINALS = "winners_semifinals"
-        const val GENERIC_WINNERS_ROUND = "winners_generic"
-        const val LOSERS_FINALS = "losers_finals"
-        const val LOSERS_SEMIFINALS = "losers_semifinals"
-        const val GENERIC_LOSERS_ROUND = "losers_generic"
+        private const val GRAND_FINALS = "grand_finals"
+        private const val WINNERS_FINALS = "winners_finals"
+        private const val WINNERS_SEMIFINALS = "winners_semifinals"
+        private const val GENERIC_WINNERS_ROUND = "winners_generic"
+        private const val LOSERS_FINALS = "losers_finals"
+        private const val LOSERS_SEMIFINALS = "losers_semifinals"
+        private const val GENERIC_LOSERS_ROUND = "losers_generic"
 
         fun calculateRound(round: Int, participantsCount: Int): String {
             val rounds = ceil(log2(participantsCount.toDouble()))
