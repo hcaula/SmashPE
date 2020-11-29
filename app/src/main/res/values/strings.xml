@@ -19,13 +19,14 @@
     <string name="title_activity_matches">Matches</string>
     <string name="matches_tab_1">Pending results</string>
     <string name="matches_tab_2">Past matches</string>
-    <string name="participants_pending">%s x %s</string>
-    <string name="participants_finished">%s %s x %s %s</string>
+    <string name="participants_pending"><b>%s</b> x <b>%s</b></string>
+    <string name="participants_finished"><b>%s</b> %s x %s <b>%s</b></string>
     <string name="match_updated_at">Last updated at %s</string>
 
     <!-- Report -->
     <string name="score_hint">0</string>
     <string name="submit_results_button">Submit results</string>
+    <string name="submit_results_dialog">Do you wish to report <b>%s</b> as this match\'s winner?</string>
 
     <!-- States -->
     <string name="state_unknown">State unknown</string>
@@ -33,6 +34,11 @@
     <string name="state_pending">Awaiting start</string>
     <string name="state_underway">In progress</string>
     <string name="state_complete">Finished</string>
+
+    <!-- Dialog -->
+    <string name="dialog_title">Attention!</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_deny">Cancel</string>
 
     <!-- Rounds -->
     <string name="round_grand_finals">Grand Finals</string>

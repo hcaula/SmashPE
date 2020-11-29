@@ -1,5 +1,6 @@
 package com.hcaula.smashpe
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -18,7 +19,6 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.math.BigInteger
 
 class ReportActivity : AppCompatActivity() {
 
@@ -76,18 +76,45 @@ class ReportActivity : AppCompatActivity() {
         val player2ScoreValue = player2Score.text.toString()
         val scoreCsv = "${player1ScoreValue}-${player2ScoreValue}"
 
-        var winnerId = match.player1Id as BigInteger
+        var winnerId = match.player1Id
+        var winnerName = match.player1Name
         if (player2ScoreValue.toInt() > player1ScoreValue.toInt()) {
-            winnerId = match.player2Id as BigInteger
+            winnerId = match.player2Id
+            winnerName = match.player2Name
         }
 
+        val builder = AlertDialog.Builder(this, R.style.DialogTheme)
+        builder
+            .setTitle(R.string.dialog_title)
+            .setMessage(
+                this.getString(
+                    R.string.submit_results_dialog,
+                    winnerName
+                )
+            )
+            .setPositiveButton(
+                R.string.dialog_confirm
+            ) { _, _ ->
+                reportMatch(
+                    scoreCsv,
+                    winnerId.toString()
+                )
+            }
+            .setNegativeButton(
+                R.string.dialog_deny
+            ) { _, _ -> }
+
+        builder.create().show()
+    }
+
+    private fun reportMatch(scoreCsv: String, winnerId: String) {
         val call = RetrofitFacade
             .retrofit
             .reportMatchResults(
                 tournamentId,
                 match.id.toString(),
                 RequestBody.create(MediaType.parse("text/plain"), scoreCsv),
-                RequestBody.create(MediaType.parse("text/plain"), winnerId.toString())
+                RequestBody.create(MediaType.parse("text/plain"), winnerId)
             )
 
         call.enqueue(object : Callback<ReportResponse?> {
