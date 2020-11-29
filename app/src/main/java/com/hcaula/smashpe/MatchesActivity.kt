@@ -7,6 +7,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.hcaula.smashpe.ui.matches.MatchesViewModel
 import com.hcaula.smashpe.ui.matches.SectionsPagerAdapter
+import kotlinx.android.synthetic.main.matches_activity.*
+import kotlinx.android.synthetic.main.matches_activity.view.*
 
 class MatchesActivity : AppCompatActivity() {
 
@@ -19,8 +21,13 @@ class MatchesActivity : AppCompatActivity() {
         val tournamentId = intent
             ?.getStringExtra("tournamentId")
             .toString()
+        val tournamentName = intent
+            ?.getStringExtra("tournamentName")
+            .toString()
         val participantsCount = intent
             ?.getIntExtra("participantsCount", 0)!!
+
+        app_bar_layout.title.text = tournamentName
 
         fetchMatchesViewModel = ViewModelProvider(this)
             .get(MatchesViewModel::class.java).apply {

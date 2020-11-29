@@ -39,6 +39,8 @@ class ReportActivity : AppCompatActivity() {
         player1Name.text = match.player1Name
         player2Name.text = match.player2Name
 
+        title = resources.getString(R.string.report_results_title)
+
         player1Score.addTextChangedListener(OnTextEdit(player2Score))
         player2Score.addTextChangedListener(OnTextEdit(player1Score))
 
@@ -51,19 +53,8 @@ class ReportActivity : AppCompatActivity() {
             val otherScore = compareScore.text?.toString()
 
             if (thisScore.isBlank() || otherScore.isNullOrBlank() || thisScore == otherScore) {
-                submit_results_button.isEnabled = false
-                submit_results_button.setBackgroundColor(
-                    ContextCompat.getColor(applicationContext, R.color.colorDisabled)
-                )
-            } else {
-                submit_results_button.isEnabled = true
-                submit_results_button.setBackgroundColor(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.colorPrimary
-                    )
-                )
-            }
+                disableButton()
+            } else enableButton()
         }
 
         override fun afterTextChanged(s: Editable?) {}
@@ -109,6 +100,7 @@ class ReportActivity : AppCompatActivity() {
 
     private fun reportMatch(scoreCsv: String, winnerId: String, activity: ReportActivity) {
         loading.visibility = View.VISIBLE
+        disableButton()
 
         val call = RetrofitFacade
             .retrofit
@@ -138,5 +130,22 @@ class ReportActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun disableButton() {
+        submit_results_button.isEnabled = false
+        submit_results_button.setBackgroundColor(
+            ContextCompat.getColor(applicationContext, R.color.colorDisabled)
+        )
+    }
+
+    private fun enableButton() {
+        submit_results_button.isEnabled = true
+        submit_results_button.setBackgroundColor(
+            ContextCompat.getColor(
+                applicationContext,
+                R.color.colorPrimary
+            )
+        )
     }
 }

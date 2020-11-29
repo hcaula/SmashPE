@@ -24,6 +24,7 @@
     <string name="match_updated_at">Last updated at %s</string>
 
     <!-- Report -->
+    <string name="report_results_title">Report results</string>
     <string name="score_hint">0</string>
     <string name="submit_results_button">Submit results</string>
     <string name="submit_results_dialog">Do you wish to report <b>%s</b> as this match\'s winner?</string>

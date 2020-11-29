@@ -58,6 +58,7 @@ class TournamentsFragment : Fragment() {
         val selectedTournament = tournaments.value?.get(position)
         val intent = Intent(activity, MatchesActivity::class.java).apply {
             putExtra("tournamentId", selectedTournament?.id.toString())
+            putExtra("tournamentName", selectedTournament?.name.toString())
             putExtra("participantsCount", selectedTournament?.participantsCount)
         }
 
