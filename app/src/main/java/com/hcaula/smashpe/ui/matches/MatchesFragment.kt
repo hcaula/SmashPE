@@ -16,6 +16,7 @@ import com.hcaula.smashpe.challonge.entities.Match
 import com.hcaula.smashpe.challonge.entities.MatchState
 import com.hcaula.smashpe.ui.tournaments.MatchesViewAdapter
 import kotlinx.android.synthetic.main.tournaments_fragment.*
+import kotlinx.android.synthetic.main.tournaments_fragment.view.*
 
 class MatchesFragment(
     val matchesViewModel: MatchesViewModel,
@@ -47,12 +48,19 @@ class MatchesFragment(
             false
         )
 
+        root.no_results.visibility = View.GONE
+
         matchesViewModel.getMatches().observe(viewLifecycleOwner, Observer {
             if (matchesViewModel.isLoading) progressBar.visibility = View.VISIBLE
             else progressBar.visibility = View.GONE
 
             val currentTab = requireArguments().getInt(ARG_SECTION_NUMBER)
             val filteredMatches = filterMatches(it, currentTab)
+
+            if (filteredMatches.isEmpty()) {
+                root.no_results.visibility = View.VISIBLE
+                return@Observer
+            }
 
             viewManager = LinearLayoutManager(activity)
             viewAdapter = MatchesViewAdapter(

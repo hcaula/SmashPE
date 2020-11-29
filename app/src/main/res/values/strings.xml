@@ -69,4 +69,9 @@
     <string name="round_winners_generic">Winners | Round %s</string>
     <string name="round_losers_generic">Losers | Round %s</string>
     <string name="round_generic">Round %s</string>
+
+    <!-- No results -->
+    <string name="no_results_icon_description">No results icon</string>
+    <string name="no_results_title">Nothing to see here…</string>
+    <string name="no_results_description">We couldn\'t find anything</string>
 </resources>

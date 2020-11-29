@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hcaula.smashpe.MatchesActivity
 import com.hcaula.smashpe.R
-import kotlinx.android.synthetic.main.tournaments_fragment.*
+import kotlinx.android.synthetic.main.tournaments_fragment.view.*
 
 class TournamentsFragment : Fragment() {
 
@@ -33,8 +33,15 @@ class TournamentsFragment : Fragment() {
             }
         val root = inflater.inflate(R.layout.tournaments_fragment, container, false)
 
+        root.no_results.visibility = View.GONE
+
         viewModel.getTournaments().observe(viewLifecycleOwner, Observer {
-            progressBar.visibility = View.GONE
+            root.progressBar.visibility = View.GONE
+
+            if (it.isEmpty()) {
+                root.no_results.visibility = View.VISIBLE
+                return@Observer
+            }
 
             viewManager = LinearLayoutManager(activity)
             viewAdapter = TournamentsViewAdapter(it, onItemClickListener)
