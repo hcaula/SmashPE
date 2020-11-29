@@ -71,7 +71,7 @@ class MatchesViewModel : ViewModel() {
 
                                         match
                                     }
-                                }.filterNotNull()
+                                }.filterNotNull().sortedByDescending { it.suggestedPlayOrder }
                             }
                         }
                     }

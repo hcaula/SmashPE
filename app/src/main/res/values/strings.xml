@@ -15,12 +15,15 @@
     </plurals>
     <string name="tournament_date">• %s</string>
 
-    <!-- Matches activity -->
+    <!-- Matches -->
     <string name="title_activity_matches">Matches</string>
     <string name="matches_tab_1">Pending results</string>
     <string name="matches_tab_2">Past matches</string>
+    <string name="participants_pending">%s x %s</string>
+    <string name="participants_finished">%s %s x %s %s</string>
+    <string name="match_updated_at">Last updated at %s</string>
 
-    <!-- Report activity -->
+    <!-- Report -->
     <string name="score_hint">0</string>
     <string name="submit_results_button">Submit results</string>
 
@@ -31,4 +34,15 @@
     <string name="state_underway">In progress</string>
     <string name="state_complete">Finished</string>
 
+    <!-- Rounds -->
+    <string name="round_grand_finals">Grand Finals</string>
+    <string name="round_grand_finals_set_1">Grand Finals (Set 1)</string>
+    <string name="round_grand_finals_set_2">Grand Finals (Set 2)</string>
+    <string name="round_winners_finals">Winners | Finals</string>
+    <string name="round_winners_semifinals">Winners | Semi-finals</string>
+    <string name="round_losers_finals">Losers | Finals</string>
+    <string name="round_losers_semifinals">Losers | Semi-finals</string>
+    <string name="round_winners_generic">Winners | Round %s</string>
+    <string name="round_losers_generic">Losers | Round %s</string>
+    <string name="round_generic">Round %s</string>
 </resources>

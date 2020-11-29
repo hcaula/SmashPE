@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.hcaula.smashpe.R
 
-class State {
+class StateHelper {
     companion object {
         fun getStateText(state: String, view: View): String {
             val stateIdentifier = view.resources.getIdentifier(

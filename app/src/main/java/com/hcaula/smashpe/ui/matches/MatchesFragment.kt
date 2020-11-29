@@ -25,6 +25,7 @@ class MatchesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: MatchesViewAdapter
     private lateinit var tId: String
+    private var participantsCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,10 @@ class MatchesFragment : Fragment() {
                     ?.getStringExtra("tournamentId")
                     .toString()
                 tournamentId = tId
+
+                participantsCount = activity
+                    ?.intent
+                    ?.getIntExtra("participantsCount", 0)!!
 
                 val ctx = getContext()
                 if (ctx != null) context = ctx
@@ -62,6 +67,7 @@ class MatchesFragment : Fragment() {
             viewManager = LinearLayoutManager(activity)
             viewAdapter = MatchesViewAdapter(
                 filteredMatches,
+                participantsCount,
                 onItemClickListener
             )
 

@@ -10,8 +10,4 @@ data class Tournament(
     val updatedAt: String,
     val participantsCount: Int,
     val state: TournamentState
-) {
-    companion object {
-        val DATE_FORMAT = "MMM dd yyyy, hh:mm a"
-    }
-}
+)
