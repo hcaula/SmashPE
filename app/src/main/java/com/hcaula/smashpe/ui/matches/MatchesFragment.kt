@@ -17,14 +17,16 @@ import com.hcaula.smashpe.challonge.entities.MatchState
 import com.hcaula.smashpe.ui.tournaments.MatchesViewAdapter
 import kotlinx.android.synthetic.main.tournaments_fragment.*
 
-class MatchesFragment(val matchesViewModel: MatchesViewModel) : Fragment() {
+class MatchesFragment(
+    val matchesViewModel: MatchesViewModel,
+    val tournamentId: String,
+    val participantsCount: Int
+) : Fragment() {
 
     private lateinit var sectionsViewModel: SectionsViewModel
     private lateinit var viewManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: MatchesViewAdapter
-    private lateinit var tId: String
-    private var participantsCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +48,8 @@ class MatchesFragment(val matchesViewModel: MatchesViewModel) : Fragment() {
         )
 
         matchesViewModel.getMatches().observe(viewLifecycleOwner, Observer {
-            progressBar.visibility = View.GONE
+            if (matchesViewModel.isLoading) progressBar.visibility = View.VISIBLE
+            else progressBar.visibility = View.GONE
 
             val currentTab = requireArguments().getInt(ARG_SECTION_NUMBER)
             val filteredMatches = filterMatches(it, currentTab)
@@ -76,7 +79,7 @@ class MatchesFragment(val matchesViewModel: MatchesViewModel) : Fragment() {
 
         val selectedMatch = matches?.find { match -> match?.id == it.tag }
         val intent = Intent(activity, ReportActivity::class.java).apply {
-            putExtra("tournamentId", tId)
+            putExtra("tournamentId", tournamentId)
             putExtra("match", selectedMatch)
         }
 
@@ -97,9 +100,15 @@ class MatchesFragment(val matchesViewModel: MatchesViewModel) : Fragment() {
         @JvmStatic
         fun newInstance(
             sectionNumber: Int,
-            matchesViewModel: MatchesViewModel
+            matchesViewModel: MatchesViewModel,
+            tournamentId: String,
+            participantsCount: Int
         ): MatchesFragment {
-            return MatchesFragment(matchesViewModel).apply {
+            return MatchesFragment(
+                matchesViewModel,
+                tournamentId,
+                participantsCount
+            ).apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }

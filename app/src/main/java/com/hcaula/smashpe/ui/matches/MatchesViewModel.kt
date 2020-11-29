@@ -15,6 +15,7 @@ import retrofit2.Response
 class MatchesViewModel : ViewModel() {
 
     lateinit var tournamentId: String
+    var isLoading = false
 
     private val matches: MutableLiveData<List<Match?>> by lazy {
         MutableLiveData<List<Match?>>().also {
@@ -24,6 +25,12 @@ class MatchesViewModel : ViewModel() {
 
     fun getMatches(): LiveData<List<Match?>> {
         return matches
+    }
+
+    fun refresh() {
+        isLoading = true
+        matches.value = listOf()
+        fetchMatches(tournamentId)
     }
 
     private fun fetchMatches(tournamentId: String) {
@@ -44,6 +51,7 @@ class MatchesViewModel : ViewModel() {
                         call: Call<List<ParticipantsResponse>?>,
                         participantsResponse: Response<List<ParticipantsResponse>?>
                     ) {
+                        isLoading = false
                         matchesResponse?.body()?.let { matchesResponse ->
                             participantsResponse.body()?.let { participantsResponse ->
                                 matches.value = matchesResponse.map {

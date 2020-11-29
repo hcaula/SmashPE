@@ -14,13 +14,17 @@ private val TAB_TITLES = arrayOf(
 class SectionsPagerAdapter(
     private val context: Context,
     fm: FragmentManager,
-    private val matchesViewModel: MatchesViewModel
+    private val matchesViewModel: MatchesViewModel,
+    private val tournamentId: String,
+    private val participantsCount: Int
 ) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return MatchesFragment.newInstance(
             position + 1,
-            matchesViewModel
+            matchesViewModel,
+            tournamentId,
+            participantsCount
         )
     }
 
