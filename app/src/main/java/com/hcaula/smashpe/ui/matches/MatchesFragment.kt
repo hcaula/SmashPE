@@ -51,8 +51,13 @@ class MatchesFragment(
         root.no_results.visibility = View.GONE
 
         matchesViewModel.getMatches().observe(viewLifecycleOwner, Observer {
-            if (matchesViewModel.isLoading) progressBar.visibility = View.VISIBLE
-            else progressBar.visibility = View.GONE
+            if (matchesViewModel.isLoading) {
+                progressBar.visibility = View.VISIBLE
+                root.no_results.visibility = View.GONE
+                return@Observer
+            }
+
+            progressBar.visibility = View.GONE
 
             val currentTab = requireArguments().getInt(ARG_SECTION_NUMBER)
             val filteredMatches = filterMatches(it, currentTab)
